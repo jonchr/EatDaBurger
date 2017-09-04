@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	
+	<title>Build-a-Burger</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- JQuery Core 3.2.1 minified -->
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<ul id="burgerList">
+				
+				</ul>
+			</div>
+			<div class="col-md-4">
+				<form action="/" method="POST">
+					<div class="form-group">
+						<label for="burger_name">Burger Type</label>
+						<input type="text" class="form-control" id="burger_name" placeholder="A basic hamburger">
+					</div>
+					<div class="form-group">
+						<label for="URL">Photo URL</label>
+						<input type="url" class="form-control" id="URL" placeholder="e.g., https://pixabay.com/en/photos/burger/">
+					</div>
+					<button type="submit">Add Burger to Eat List!</button>
+				</form>
+			</div>
+			<div class="col-md-4">
+				<ul id="eatenList">
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+			for (var i in burger) {
+				//If uneaten, adds it to the uneaten left side with picture and eat button
+				if(!burger[i].devoured) {
+					var burgerObj = $("<li>");
+					burgerObj.append("<h4>" + burger[i].burger_name + "</h4>");
+					burgerObj.append("<img href='" + burger[i].link + "'' alt='" + burger[i].burger_name + " image'>");
+					burgerObj.append('<form action="/' + burger[i].id + '?_method_PUT" method="POST"><input type="hidden" name="devoured" value="true"><button type="submit">EAT THIS!!</button></form>');					
+					$("#burgerList").append(burgerObj);
+				}
+				//If eaten, just lists the name on the right
+				else {
+					$("#eatenList").append("<li><h4>" + burger[i].burger_name + "</h4></li>")
+				}
+			}
+	</script>
+</body>
+</html>

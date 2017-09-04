@@ -1,0 +1,58 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-4" id="burgerList">
+			<ul>
+				{{!-- Creates a burger for each uneaten one in the database --}}
+				{{#each burger}}
+					{{#unless this.devoured}}
+						<li>
+							<h4>{{this.burger_name}}</h4>
+							
+							<img src="{{this.link}}" class="img-thumbnail" alt="{{this.burger_name}} image">
+
+							<form action="/{{this.id}}?_method=PUT" method="POST">
+								<input type="hidden" name="devoured" value="true">
+								<button type="submit">EAT THIS!!</button>
+							</form>
+							<br>
+						</li>
+					{{/unless}}
+				{{/each}}
+			</ul>
+		</div>
+		<div class="col-md-4">
+			<form action="/" method="POST">
+				<div class="form-group">
+					<label for="bn">Burger Type</label>
+					<input type="text" class="form-control" id="bn" name="name" placeholder="A basic hamburger">
+				</div>
+
+				<div class="form-group">
+					<label for="URL">Photo URL</label>
+					<input type="url" class="form-control" id="URL" name="URL" placeholder="e.g., https://pixabay.com/en/photos/burger/">
+				</div>
+
+				<button type="submit">Add Burger to Eat List!</button>
+			</form>
+		</div>
+		<div class="col-md-4">
+			<ul>
+				{{!-- List of consumed burgers --}}
+				{{#each burger}}
+					{{#if this.devoured}}
+						<li>
+							<h4>{{this.burger_name}}</h4>
+						</li>
+					{{/if}}
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$('img').on("error", function(){
+    	$(this).attr("src", "./assets/img/burger.svg");
+    	$(this).css("width", "250px");
+	});
+	
+</script>
