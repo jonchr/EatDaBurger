@@ -1,58 +1,117 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-4" id="burgerList">
-			<ul>
-				{{!-- Creates a burger for each uneaten one in the database --}}
+			{{!-- <ul> --}}
+				<h3>To Eat</h3>
+				<hr>
+				{{!-- Creates a burger for each non-devoured one in the database --}}
 				{{#each burger}}
 					{{#unless this.devoured}}
-						<li>
+						{{!-- <li> --}}
 							<h4>{{this.burger_name}}</h4>
 							
-							<img src="{{this.link}}" class="img-thumbnail" alt="{{this.burger_name}} image">
+							<img src="{{this.link}}" class="img-thumbnail burgerImage" alt="{{this.burger_name}} image">
 
 							<form action="/{{this.id}}?_method=PUT" method="POST">
 								<input type="hidden" name="devoured" value="true">
-								<button type="submit">EAT THIS!!</button>
+								<button type="submit" class="btn btn-danger">EAT THIS!!</button>
 							</form>
 							<br>
-						</li>
+						{{!-- </li> --}}
 					{{/unless}}
 				{{/each}}
-			</ul>
+			{{!-- </ul> --}}
 		</div>
+
 		<div class="col-md-4">
-			<form action="/" method="POST">
-				<div class="form-group">
-					<label for="bn">Burger Type</label>
-					<input type="text" class="form-control" id="bn" name="name" placeholder="A basic hamburger">
-				</div>
+			<div id="addABurger">
+				<form action="/" method="POST">
+					
+					<img src="./assets/img/top.png" class="burgerComponent" alt="topBunAndCheese">
+					
+					<div class="form-group">
+						{{!-- <label for="bn">Burger Type</label> --}}
+						<input type="text" class="form-control patty" id="bn" name="name" placeholder="Enter the Name of Your Burger">
+					</div>
+					
+					<img src="./assets/img/tomattuce.png" class="burgerComponent" alt="LettuceAndTomatoes">
+					
+					<div class="form-group">
+						{{!-- <label for="URL">Photo URL</label> --}}
+						<input type="url" class="form-control patty" id="URL" name="URL" placeholder="Enter the Image URL of Your Burger">
+					</div>
+					
+					<img src="./assets/img/bottomBun.png" class="burgerComponent" alt="bottomBun">					
 
-				<div class="form-group">
-					<label for="URL">Photo URL</label>
-					<input type="url" class="form-control" id="URL" name="URL" placeholder="e.g., https://pixabay.com/en/photos/burger/">
-				</div>
-
-				<button type="submit">Add Burger to Eat List!</button>
-			</form>
+					<button type="submit" class="btn btn-success" id="submit">Order Up!</button>	
+				</form>
+			</div>
 		</div>
-		<div class="col-md-4">
-			<ul>
+
+		<div class="col-md-4" id="devouredList">
+			<h3>To Digest</h3>
+			<hr>
+			{{!-- <ul> --}}
 				{{!-- List of consumed burgers --}}
 				{{#each burger}}
 					{{#if this.devoured}}
-						<li>
-							<h4>{{this.burger_name}}</h4>
-						</li>
+						{{!-- <li style="text-decoration: line-through;"> --}}
+							<h4>
+								{{this.burger_name}}  
+								<img src="{{this.link}}" class="burgerIcon" alt="">
+							</h4>
+						{{!-- </li> --}}
 					{{/if}}
 				{{/each}}
-			</ul>
+			{{!-- </ul> --}}
 		</div>
 	</div>
+
+    <!-- Modal copied and modified from bootstrap -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close modalClose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Why it tastes so good I think I'd like to try it a second time!</h4>
+                </div> <!-- /.modal-header -->
+                <div class="modal-body">
+					<img src="./assets/img/second_time.gif" alt="I'd like to try it a second time" id="neptuneGif">
+                </div> <!-- /.modal-body -->
+                <div class="modal-footer">
+                	<button type="button" class="btn btn-danger modalClose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">OK!</span></button>
+                </div> <!-- /.modal-footer -->
+            </div> <!-- /.modal-content -->
+        </div> <!-- /.modal-dialog -->
+    </div> <!-- /.modal -->
+
+    <footer class="footer">
+        <a href="/reset" id="resetLink">Reset</a>
+    </footer>
+    <br>
+
 </div>
+
 <script type="text/javascript">
-	$('img').on("error", function(){
+	//If an image doesn't load (i.e. the user submits a bad URL), loads a burger icon
+	$(".burgerImage").on("error", function(){
     	$(this).attr("src", "./assets/img/burger.svg");
-    	$(this).css("width", "250px");
+    	$(this).css("width", "150px");
+    	$(this).css("border-radius", "25px");
 	});
+	$(".burgerIcon").on("error", function(){
+    	$(this).attr("src", "./assets/img/burger.svg");
+    	$(this).css("width", "45px");
+    	$(this).css("border-radius", "8px");
+	});
+
+	//When reset link is clicked, loads modal
+	$("#resetLink").on("click", function() {
+		$("#modal").modal();
+	});
+
+	$(".modalClose").on("click", function(){
+		window.location.replace("/");
+	})
 	
 </script>

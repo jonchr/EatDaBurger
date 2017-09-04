@@ -1,4 +1,59 @@
-img {
-	width: 300px;
+
+body {
+	background-color: #F8D17E;
+}
+hr {
+	margin-top: 5px;
+}
+
+#addABurger {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+   /*want to center it horizontally and have it scroll down with you*/
+}
+.form-group {
+	margin-bottom: 0px;
+}
+.patty {
+	/*How to change the text color??*/
+	/*color: red;*/
+	/*font-weight: bold;*/
+	text-align: center;
+
+	background-color: #6A342B;
+	border: 2px solid #631C13;
+	border-radius: 12px;
+	
+}
+.burgerComponent {
+	width: 360px;
+}
+
+.burgerImage {
+	width: 350px;
 	margin-bottom: 10px;
+	background-color: #eee;
+}
+.burgerIcon {
+	margin-left: 5px;
+	width: 80px;
+}
+.modal-footer {
+	display: flex;
+	justify-content: center;
+}
+
+#submit {
+	color: #111;
+	font-weight: bold;
+	margin-top: 10px;
+
+	/*Center block from bootstrap*/
+	margin-left:auto;
+	margin-right:auto;
+	display:block;
+}
+#neptuneGif {
+	width: 568px;
 }

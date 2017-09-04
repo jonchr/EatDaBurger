@@ -23,10 +23,10 @@ var ORM = {
 	},
 
 	//updates values in one column for rows that match the given condition
-	updateOne: function(columnName, newValue, whereCol, whereVal, cb) {
+	updateOne: function(columnName, newValue, whereCol, whereCond, cb) {
 		var queryString = "UPDATE `burgers` SET ";
 		queryString += columnName + "=" + newValue;
-		queryString += " WHERE " + whereCol + "=" + whereVal;
+		queryString += " WHERE " + whereCol + whereCond;
 		
 		connection.query(queryString, function(err, result) {
 			if (err) throw err;

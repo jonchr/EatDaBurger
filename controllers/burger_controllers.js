@@ -28,9 +28,16 @@ var burger = require("../models/burger.js");
 	//Only used to update when a burger is eaten
 	router.put("/:id", function(req, res) {
 
-		burger.updateRow(["devoured", 1, "id", req.params.id], function(){
+		burger.updateRow(["devoured", 1, "id", "=" + req.params.id], function(){
 			res.redirect("/");
 		});
+	});
+
+	//Route to reset all the burgers to uneaten in the database
+	router.get("/reset", function(req, res) {
+		burger.updateRow(["devoured", 0, "id", " IS NOT NULL"], function(){
+			// res.redirect("/");
+		})
 	});
 
 //Exports routes for the server to use
