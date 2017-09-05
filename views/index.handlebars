@@ -1,8 +1,9 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
+			<div class="toEat">
 			{{!-- <ul> --}}
-				<h3>To Eat</h3>
+				<h1>To Eat:</h1>
 				<hr>
 				{{!-- Creates a burger for each non-devoured one in the database --}}
 				{{#each burger}}
@@ -21,12 +22,13 @@
 					{{/unless}}
 				{{/each}}
 			{{!-- </ul> --}}
+			</div>
 		</div>
 
 		<div class="col-md-4">
-			<div id="addABurger">
+			<div class="addABurger">
 				<form action="/" method="POST">
-					
+					<div class="burger">
 					<img src="./assets/img/top.png" class="burgerComponent" alt="topBunAndCheese">
 					
 					<div class="form-group">
@@ -42,28 +44,30 @@
 					</div>
 					
 					<img src="./assets/img/bottomBun.png" class="burgerComponent" alt="bottomBun">					
-
+					</div>
 					<button type="submit" class="btn btn-success" id="submit">Order Up!</button>	
 				</form>
 			</div>
 		</div>
 
 		<div class="col-md-4">
-			<h3>To Digest</h3>
-			<hr>
-			{{!-- <ul> --}}
-				{{!-- List of consumed burgers --}}
-				{{#each burger}}
-					{{#if this.devoured}}
-						{{!-- <li style="text-decoration: line-through;"> --}}
-							<h4>
-								{{this.burger_name}}  
-								<img src="{{this.link}}" class="burgerIcon" alt="">
-							</h4>
-						{{!-- </li> --}}
-					{{/if}}
-				{{/each}}
-			{{!-- </ul> --}}
+			<div class="toDigest">
+				<h1>To Digest:</h1>
+				<hr>
+				{{!-- <ul> --}}
+					{{!-- List of consumed burgers --}}
+					{{#each burger}}
+						{{#if this.devoured}}
+							{{!-- <li style="text-decoration: line-through;"> --}}
+								<h4>
+									{{this.burger_name}}  
+									<img src="{{this.link}}" class="burgerIcon" alt="">
+								</h4>
+							{{!-- </li> --}}
+						{{/if}}
+					{{/each}}
+				{{!-- </ul> --}}
+			</div>
 		</div>
 	</div>
 
