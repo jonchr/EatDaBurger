@@ -7,7 +7,7 @@ EatDaBurger has two lists: one with burgers you would like to eat, and another f
 
 ### Development
 
-This application was developed as part of the GW Coding Bootcamp and was completed at the end of the seventh week. It is a full-stack application organized with proper MVC design. The front-end uses Express-Handlebars as well as Bootstrap and its jQuery. The back-end uses Express, Body-Parser, MethodOverride, a custom ORM to connect to the MySQL database.
+This application was developed as part of the GW Coding Bootcamp and was completed at the end of the seventh week. It is a full-stack application organized with proper MVC design. The front-end uses Express-Handlebars as well as Bootstrap and its jQuery. The back-end uses Express, Body-Parser, MethodOverride, and a custom ORM to connect to the MySQL database.
 
 ### Organization
 
